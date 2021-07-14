@@ -6,7 +6,19 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getMessage(): string {
+    return '<p>Score one <a href="/heart">heart</a> or one <a href="/coin">coin</a>.</p>';
+  }
+
+  @Get('coin')
+  scoreCoin(): string {
+    this.appService.score('coin');
+    return this.getMessage();
+  }
+
+  @Get('heart')
+  scoreHeart(): string {
+    this.appService.score('heart');
+    return this.getMessage();
   }
 }
